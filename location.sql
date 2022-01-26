@@ -3,9 +3,6 @@ CREATE TABLE location
   latitude NUMBER(9,6) NOT NULL,
   longitude NUMBER(9,6) NOT NULL,
   CONSTRAINT fk_map
-    FOREIGN KEY (map_id)
+    FOREIGN KEY (map_pk)
     REFERENCES map(id)
 );
-
-
-INSERT INTO map VALUES ( 1, 'My first Map', 'Diese Sammlung von Orten sollte sowohl Jung als auch Alt zum grübeln bringen. Viel Spaß mit diesem Geniestreich!' , DEFAULT, DEFAULT, DEFAULT);
