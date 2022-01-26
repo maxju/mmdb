@@ -1,7 +1,3 @@
-DROP INDEX myindex
-
-DROP TABLE map
-
 CREATE TABLE custom_user
 ( id number(10) NOT NULL CONSTRAINT custom_user_pk PRIMARY KEY,
   username varchar2(50) NOT NULL,
