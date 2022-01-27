@@ -1,7 +1,7 @@
 CREATE TABLE game (
     id number(10) NOT NULL CONSTRAINT game_pk PRIMARY KEY,
-    map_id NUMBER(10) NOT NULL,
-    FOREIGN KEY (map_id) REFERENCES (map)    
+    custom_map_id NUMBER(10) NOT NULL,
+    FOREIGN KEY (custom_map_id) REFERENCES custom_map(id)    
 );
 
 -- Relationship game-location: MANY TO MANY
