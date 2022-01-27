@@ -1,4 +1,4 @@
-CREATE OR REPLACE DIRECTORY IMGDIR021 AS '/home/mschaibl/oracle/360';
+CREATE OR REPLACE DIRECTORY IMGDIR021 AS '/home/mschaibl/oracle/360/';
 
 DROP INDEX myindex
 DROP TABLE custom_map
@@ -43,37 +43,5 @@ imageObj.import(ctx);
 UPDATE custom_map SET image = imageObj WHERE id = I;
 END LOOP;
 COMMIT;
-END;
-/
-
-
-DECLARE
--- application variables
-imageObj ORDSYS.ORDImage;
-ctx RAW(4000) := NULL;
-fileName VARCHAR(20);
-BEGIN
-FOR I IN 1..[ANZAHL DER ZU LADENDEN BILDER, z.B. 227] LOOP
-fileName := 'picture';
-IF I < 100 THEN
-fileName := fileName || '0';
-END IF;
-IF I < 10 THEN
-fileName := fileName || '0';
-END IF;
-INSERT INTO custom_map
-VALUES ( I, ORDSYS.ORDImage.init(),ORDSYS.ORDImageSignature.init() );
--- Select the newly inserted row for update
-SELECT image INTO custom_map FROM photos WHERE id = I for UPDATE;
--- fill in the image BLOB.
--- This example imports the image from the IMGDIR
--- directory on a local file system
--- (srcType=FILE) and automatically sets the properties.
-imageObj.setSource('file','IMGDIR021',fileName || I || '.jpg');
-imageObj.import(ctx);
-UPDATE photos SET image = imageObj WHERE id = I;
-END LOOP;
-COMMIT;
--- Continue processing
 END;
 /
