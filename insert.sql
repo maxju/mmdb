@@ -59,7 +59,3 @@ INSERT INTO game_location_rel VALUES(1, 4);
 INSERT INTO game_location_rel VALUES(1, 5);
 --Game score
 INSERT INTO user_game_rel VALUES(1,1,7566);
-
--- Select only high res videos
-SELECT id, loc.video.getFrameResolution() as resolution,
-FROM location loc WHERE loc.getFrameResolution() > 4000

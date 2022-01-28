@@ -28,3 +28,8 @@ WHERE E.id=0 AND Q.id != E.id
 AND ORDSYS.IMGSimilar(Q.image_sig, E.image_sig,
 'color="<color>" location="<location>" shape="<shape>" texture="<texture>"',
 <threshold>, 123) = 1 ORDER BY SCORE ASC;
+
+
+-- Select only high res videos
+SELECT id, loc.video.getFrameResolution() as resolution,
+FROM location loc WHERE loc.getFrameResolution() > 4000
