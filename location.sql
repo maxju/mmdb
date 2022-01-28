@@ -19,3 +19,12 @@ CREATE TABLE location_map_rel (
     primary key(location_id, custom_map_id)
 );
 
+
+-- Compare Pictures
+
+SELECT Q.id, ORDSYS.IMGScore(123) SCORE
+FROM location Q, location E
+WHERE E.id=0 AND Q.id != E.id
+AND ORDSYS.IMGSimilar(Q.image_sig, E.image_sig,
+'color="<color>" location="<location>" shape="<shape>" texture="<texture>"',
+<threshold>, 123) = 1 ORDER BY SCORE ASC;
