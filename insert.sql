@@ -38,6 +38,22 @@ COMMIT;
 END;
 /
 
+-- Gernerate IMG_SIG
+DECLARE
+imageObj ORDSYS.ORDImage;
+image_sigObj ORDSYS.ORDImageSignature;
+BEGIN
+FOR I IN 1..4 LOOP
+SELECT image, image_sig INTO imageObj, image_sigObj
+FROM location WHERE id=I FOR UPDATE;
+-- generate a signature
+image_sigObj.generateSignature(imageObj);
+UPDATE location SET image_sig = image_sigObj WHERE id =I;
+END LOOP;
+COMMIT;
+END;
+/
+
 -- Insert Videos
 videoObj ORDSYS.ORDVideo;
 ctx RAW(4000) := NULL;
