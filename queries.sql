@@ -16,5 +16,12 @@ AND ORDSYS.IMGSimilar(Q.image_sig, E.image_sig,
 <threshold>, 123) = 1 ORDER BY SCORE ASC;
 
 -- Select only high res videos
-SELECT id, loc.video.getFrameResolution() as resolution,
-FROM location loc WHERE loc.getFrameResolution() > 4000
+SELECT id, loc.video_360.getFrameResolution() as resolution
+FROM location loc WHERE id=5;
+
+SELECT id, loc.video_360.getMimeType() as mimeType,
+loc.video_360.getFormat() as format
+FROM location loc WHERE id=5;
+
+SELECT id, loc.video_360.getFormat() as format
+FROM location loc WHERE id=5;

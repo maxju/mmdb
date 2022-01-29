@@ -46,7 +46,7 @@ CREATE TABLE location
     longitude NUMBER(9,6) NOT NULL,
     image_360 ORDSYS.ORDImage,
     image_360_sig ORDSYS.ORDImageSignature,
-    video360 ORDSYS.ORDVideo
+    video_360 ORDSYS.ORDVideo
 );
 
 -- Relationship location-map: MANY TO MANY
