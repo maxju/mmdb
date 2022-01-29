@@ -1,10 +1,5 @@
-CREATE OR REPLACE DIRECTORY IMGDIR037 AS '/home/mschaibl/oracle/360/';
-GRANT READ ON DIRECTORY IMGDIR037 TO 'MMDB037';
-
-DROP INDEX myindex
-DROP TABLE custom_map
-DROP TABLE map
-DROP TABLE custom_map,custom_user,location;
+DROP INDEX myindex;
+DROP TABLE custom_map;
 
 CREATE TABLE custom_map
 ( id NUMBER(10) NOT NULL,
