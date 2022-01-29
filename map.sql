@@ -18,9 +18,3 @@ INSERT INTO custom_map VALUES ( 2, 'Die große Herausforderung' , 'Wer eine geh�
 INSERT INTO custom_map VALUES ( 3, 'Spanien', 'Weite Steppen, einige Bäume und vor allem eine Unmenge an kniffligen Orten warten in dieser Map auf euch.', DEFAULT, DEFAULT, DEFAULT, 2);
 INSERT INTO custom_map VALUES ( 4, 'Leipzig', 'Ah ja, Leipzig. Warum auch nicht?', DEFAULT, DEFAULT, DEFAULT, 1);
 
-create index myindex on custom_map(description) 
-  indextype is ctxsys.context   
-  parameters ('DATASTORE CTXSYS.DEFAULT_DATASTORE SYNC (ON COMMIT)');
-
-SELECT description FROM custom_map WHERE CONTAINS ( description, 'Jung Alt' ) > 0;
-SELECT description FROM custom_map WHERE CONTAINS ( description, 'Jung and Alt' ) > 0;
