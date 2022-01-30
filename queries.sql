@@ -6,12 +6,21 @@ SELECT description FROM custom_map WHERE CONTAINS ( description, 'Jung and Alt' 
 
 -- Table Location
 -- Images
--- Compare Images
 
+-- Get Image Height 
+SELECT id, p.image_360.getHeight() as height, p.image_360.getFileFormat() as format
+FROM location p WHERE id=1;
+
+-- Get Image Size
+SELECT id, p.image_360.getContentLength() as contentLength, p.image_360.getFileFormat() as format
+FROM location p WHERE id=1;
+ 
+
+-- Compare Images
 SELECT Q.id, ORDSYS.IMGScore(123) SCORE
 FROM location Q, location E
 WHERE E.id=0 AND Q.id != E.id
-AND ORDSYS.IMGSimilar(Q.image_sig, E.image_sig,
+AND ORDSYS.IMGSimilar(Q.image_360_sig, E.image_360_sig,
 'color="<color>" location="<location>" shape="<shape>" texture="<texture>"',
 <threshold>, 123) = 1 ORDER BY SCORE ASC;
 
