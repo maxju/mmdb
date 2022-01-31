@@ -6,6 +6,9 @@ create index myindex on custom_map(description)
 -- IMG Directory
 CREATE OR REPLACE DIRECTORY IMGDIR037 AS '/home/mschaibl/linuxhome/oracle/360-img/';
 
+CREATE OR REPLACE DIRECTORY FLAGDIR037 AS '/home/mschaibl/linuxhome/oracle/flags/';
+
+
 -- Insert Images Location
 DECLARE
 imageObj ORDSYS.ORDImage;
@@ -44,7 +47,7 @@ ctx RAW(4000) := NULL;
 BEGIN
 FOR I IN 1..4 LOOP
 SELECT flag INTO imageObj FROM country WHERE id = I for UPDATE;
-imageObj.setSource('file','IMGDIR037', I || '.jpg');
+imageObj.setSource('file','FLAGDIR037', I || '.jpg');
 imageObj.import(ctx);
 UPDATE country SET flag = imageObj WHERE id = I;
 END LOOP;
@@ -72,15 +75,15 @@ END;
 -- VID Directory
 CREATE OR REPLACE DIRECTORY VIDDIR037 AS '/home/mschaibl/linuxhome/oracle/360-vid/';
 
--- Insert Videos
-DECLARE
-videoObj ORDSYS.ORDVideo;
-ctx RAW(4000) := NULL;
-BEGIN
-SELECT video_360 INTO videoObj FROM location WHERE id=5 FOR UPDATE;
-videoObj.setSource('file','VIDDIR037', '1.mpg');
-videoObj.import(ctx);
-videoObj.setProperties(ctx);
-UPDATE location SET video_360 = videoObj WHERE id = 5;
-END;
-/
+    -- Insert Videos
+    DECLARE
+    videoObj ORDSYS.ORDVideo;
+    ctx RAW(4000) := NULL;
+    BEGIN
+    SELECT video_360 INTO videoObj FROM location WHERE id=5 FOR UPDATE;
+    videoObj.setSource('file','VIDDIR037', '2.mpg');
+    videoObj.import(ctx);
+    videoObj.setProperties(ctx);
+    UPDATE location SET video_360 = videoObj WHERE id = 5;
+    END;
+    /
