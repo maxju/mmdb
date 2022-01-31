@@ -78,7 +78,7 @@ videoObj ORDSYS.ORDVideo;
 ctx RAW(4000) := NULL;
 BEGIN
 SELECT video_360 INTO videoObj FROM location WHERE id=5 FOR UPDATE;
-videoObj.setSource('file','VIDDIR037', '1.mp4');
+videoObj.setSource('file','VIDDIR037', '1.mpg');
 videoObj.import(ctx);
 videoObj.setProperties(ctx);
 UPDATE location SET video_360 = videoObj WHERE id = 5;
