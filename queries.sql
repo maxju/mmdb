@@ -23,6 +23,14 @@ WHERE E.id=1 AND Q.id != E.id
 AND ORDSYS.IMGSimilar(Q.image_360_sig, E.image_360_sig,
 'color="1"', 100, 123) = 1 ORDER BY SCORE ASC;
 
+
+SELECT Q.id, ORDSYS.IMGScore(123) SCORE
+FROM location Q, location E
+WHERE E.id=1 AND Q.id != E.id
+AND ORDSYS.IMGSimilar(Q.image_360_sig, E.image_360_sig,
+'color="0.5" location="0.1" shape="0.2" texture="0.2"', 100, 123) = 1 ORDER BY SCORE ASC;
+
+
 -- Select only high res videos
 SELECT id, loc.video_360.getFrameResolution() as resolution
 FROM location loc WHERE id=5;
