@@ -35,9 +35,25 @@ AND ORDSYS.IMGSimilar(Q.image_360_sig, E.image_360_sig,
 SELECT id, loc.video_360.getFrameResolution() as resolution
 FROM location loc WHERE id=5;
 
+
+SELECT id, loc.video_360.getFrameSize(width, height) as width
+FROM location loc WHERE id=5;
+
 SELECT id, loc.video_360.getMimeType() as mimeType,
 loc.video_360.getFormat() as format
 FROM location loc WHERE id=5;
 
-SELECT id, loc.video_360.getFormat() as format
-FROM location loc WHERE id=5;
+
+-- Resolution script
+DECLARE
+ obj ORDSYS.ORDVideo;
+ res INTEGER;
+BEGIN
+ SELECT loc.video_360 INTO obj FROM location loc 
+  WHERE id  = 5;
+ res := obj.getFrameResolution();
+ DBMS_OUTPUT.PUT_LINE('test');
+ DBMS_OUTPUT.PUT_LINE('resolution : ' ||res);
+ COMMIT;
+END;
+/
